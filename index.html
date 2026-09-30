@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohammed Salik</title>
+<meta name="description" content="English teacher and AI / LLM evaluation specialist. Response quality judgement, prompt engineering, search evaluation and multilingual data work.">
+<style>
+  :root {
+    --red: #E9514B;
+    --amber: #F5A14B;
+    --ink: #1a1a1a;
+    --muted: #5c5c5c;
+    --line: #e2e2e2;
+    --bg: #ffffff;
+    --panel: #fafafa;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  h1, h2, h3, .sans {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    position: relative;
+    padding: 84px 0 70px;
+    background-color: #120a06;
+    background-image: url("header.webp");
+    background-size: cover;
+    background-position: center 40%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: linear-gradient(100deg,
+      rgba(6,4,2,.96) 0%,
+      rgba(8,5,3,.93) 46%,
+      rgba(12,7,4,.80) 74%,
+      rgba(16,9,5,.66) 100%);
+  }
+
+  header .wrap { position: relative; z-index: 1; }
+
+  .id { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+
+  .monogram {
+    width: 92px; height: 92px;
+    flex: 0 0 92px;
+    border: 5px solid var(--amber);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+    color: var(--amber);
+    letter-spacing: 1px;
+    background: rgba(10,6,3,.55);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 38px;
+    letter-spacing: .5px;
+    line-height: 1.15;
+    color: #ffffff;
+  }
+
+  .role {
+    margin: 8px 0 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+
+  .lede {
+    margin: 28px 0 0;
+    font-size: 19px;
+    line-height: 1.6;
+    max-width: 60ch;
+    color: #ece4dd;
+  }
+
+  .links {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .links a {
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: .4px;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1.5px solid var(--line);
+    border-radius: 3px;
+    padding: 9px 15px;
+    margin: 0 10px 10px 0;
+  }
+
+  .links a:hover { border-color: var(--red); color: var(--red); }
+
+  header .links a {
+    color: #ffffff;
+    border-color: rgba(255,255,255,.38);
+    background: rgba(0,0,0,.25);
+  }
+
+  header .links a:hover {
+    border-color: var(--amber);
+    color: var(--amber);
+  }
+
+  /* ---------- Sections ---------- */
+  section { padding: 46px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+
+  h2 {
+    margin: 0 0 4px;
+    font-size: 21px;
+    letter-spacing: .3px;
+  }
+
+  .bar { width: 100%; height: 5px; background: var(--red); margin-bottom: 26px; }
+
+  h3 {
+    margin: 0 0 8px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  p { margin: 0 0 16px; max-width: 68ch; }
+  p:last-child { margin-bottom: 0; }
+
+  .group { margin-bottom: 30px; }
+  .group:last-child { margin-bottom: 0; }
+
+  ul.plain { list-style: none; margin: 0; padding: 0; max-width: 68ch; }
+
+  ul.plain li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+  }
+
+  ul.plain li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 10px;
+    width: 7px; height: 7px;
+    background: var(--red);
+  }
+
+  /* ---------- Roles ---------- */
+  .role-item { margin-bottom: 26px; }
+  .role-item:last-child { margin-bottom: 0; }
+
+  .role-head {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: .3px;
+    margin-bottom: 2px;
+  }
+
+  .role-meta {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12.5px;
+    letter-spacing: .3px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  /* ---------- Tag list ---------- */
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .tags span {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12.5px;
+    letter-spacing: .2px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 6px 11px;
+  }
+
+  /* ---------- Two column ---------- */
+  .two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 34px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 38px 0 60px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  footer a { color: var(--ink); }
+
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    h1 { font-size: 28px; }
+    .lede { font-size: 17px; margin-top: 22px; }
+    .two { grid-template-columns: 1fr; gap: 26px; }
+    header { padding: 52px 0 46px; background-position: 62% 40%; }
+    header::before {
+      background: linear-gradient(180deg,
+        rgba(8,5,3,.90) 0%,
+        rgba(10,6,4,.88) 60%,
+        rgba(14,8,4,.84) 100%);
+    }
+    .monogram { width: 72px; height: 72px; flex: 0 0 72px; font-size: 25px; border-width: 4px; }
+    .id { gap: 18px; }
+    section { padding: 34px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="id">
+      <div class="monogram">MS</div>
+      <div>
+        <h1>Mohammed Salik</h1>
+        <p class="role">English Teacher / AI and LLM Evaluation</p>
+      </div>
+    </div>
+
+    <p class="lede">I teach English to secondary students and spend the rest of my working
+    time judging what large language models say. Both jobs come down to the same thing:
+    reading carefully, applying a standard consistently, and being able to explain the
+    reason behind a decision.</p>
+
+    <div class="links">
+      <a href="mailto:mdsalik0403@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/sallikmohammad-186291339/">LinkedIn</a>
+      <a href="https://github.com/salik-mohammed">GitHub</a>
+      <a href="Mohammed_Salik_Resume.pdf">Resume (PDF)</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>AI and LLM work</h2>
+    <div class="bar"></div>
+
+    <p>Since 2020 I have worked as an independent contractor across AI training, search
+    evaluation and language data projects. The clients and project names stay confidential,
+    so what follows is the kind of work rather than who it was for.</p>
+
+    <div class="group">
+      <h3>Model response evaluation</h3>
+      <ul class="plain">
+        <li>Judge model responses against detailed quality rubrics: accuracy, helpfulness, instruction-following, tone and safety.</li>
+        <li>Compare two or more outputs side by side and pick the stronger one, with a written justification for the choice.</li>
+        <li>Write rationales that explain why a response passes or fails a guideline. These get used to calibrate other reviewers.</li>
+        <li>Flag hallucinations, unsupported claims, harmful content and guideline violations.</li>
+      </ul>
+    </div>
+
+    <div class="group">
+      <h3>Prompt engineering</h3>
+      <ul class="plain">
+        <li>Write prompts across a wide range of tasks and difficulty levels to test and stretch model capability.</li>
+        <li>Build adversarial and edge-case prompts that surface weaknesses in reasoning, factuality and instruction-following.</li>
+        <li>Refine wording, structure and constraints until output becomes consistent.</li>
+        <li>Author ideal reference responses that serve as training and grading targets.</li>
+      </ul>
+    </div>
+
+    <div class="group">
+      <h3>Search and information retrieval</h3>
+      <ul class="plain">
+        <li>Rate search results and ranked result sets against relevance and quality guidelines.</li>
+        <li>Evaluate advertisement relevance, landing page quality and policy compliance.</li>
+        <li>Read ambiguous user intent and apply long written guidelines the same way every time.</li>
+      </ul>
+    </div>
+
+    <div class="group">
+      <h3>Linguistic and multilingual data</h3>
+      <ul class="plain">
+        <li>Annotate, label and classify text for machine learning training sets.</li>
+        <li>Transcribe, localize and quality-check audio and text in English, Hindi, Urdu and Marathi.</li>
+        <li>Review localized content for fluency, cultural fit and terminology accuracy.</li>
+        <li>Run quality assurance on annotated datasets and fix labelling inconsistencies.</li>
+      </ul>
+    </div>
+
+    <div class="group">
+      <h3>How I learned it</h3>
+      <p>Self-taught, through online courses and a lot of live project work. No certificate to
+      point at. What I have instead is several years of applying rating guidelines under review,
+      where inconsistent judgement gets caught quickly.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Teaching</h2>
+    <div class="bar"></div>
+
+    <div class="role-item">
+      <div class="role-head">English Teacher</div>
+      <div class="role-meta">St. Xavier's High School / May 2020 to present</div>
+      <p>I assess and follow the progress of more than 150 students through each term, and
+      work with the rest of the staff to plan and co-ordinate the year.</p>
+    </div>
+
+    <div class="role-item">
+      <div class="role-head">Teaching Assistant</div>
+      <div class="role-meta">St. Xavier's High School / June 2019 to April 2020</div>
+      <p>Made sure students actually followed the curriculum being taught, and gave extra
+      support to the ones who needed it.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="two">
+      <div>
+        <h2>Skills</h2>
+        <div class="bar"></div>
+        <div class="tags">
+          <span>Prompt engineering</span>
+          <span>Response quality evaluation</span>
+          <span>Comparative model rating</span>
+          <span>Search relevance rating</span>
+          <span>Data annotation</span>
+          <span>Guideline interpretation</span>
+          <span>Transcription</span>
+          <span>Localization</span>
+          <span>Proofreading and editing</span>
+          <span>Curriculum delivery</span>
+          <span>Student assessment</span>
+          <span>MS Office</span>
+        </div>
+      </div>
+
+      <div>
+        <h2>Education</h2>
+        <div class="bar"></div>
+        <div class="role-item">
+          <div class="role-head">Bachelor of Arts, English and Literature</div>
+          <div class="role-meta">University of Mumbai / 2020</div>
+        </div>
+        <div class="role-item">
+          <div class="role-head">Higher Secondary Certificate</div>
+          <div class="role-meta">A.T.T. High School and Junior College / 2017</div>
+        </div>
+
+        <h2 style="margin-top:34px">Languages</h2>
+        <div class="bar"></div>
+        <div class="tags">
+          <span>English</span>
+          <span>Hindi</span>
+          <span>Urdu</span>
+          <span>Marathi</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Get in touch</h2>
+    <div class="bar"></div>
+    <p>Open to teaching roles and to AI evaluation, prompt and language data work,
+    remote or in Maharashtra.</p>
+    <div class="links">
+      <a href="mailto:mdsalik0403@gmail.com">mdsalik0403@gmail.com</a>
+      <a href="https://www.linkedin.com/in/sallikmohammad-186291339/">LinkedIn</a>
+      <a href="https://github.com/salik-mohammed">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Mohammed Salik. Built as a plain static page, no tracking.
+  </div>
+</footer>
+
+</body>
+</html>
