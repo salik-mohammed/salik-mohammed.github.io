@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Response Comparison Case Study</title>
+<meta name="description" content="A side-by-side evaluation of two model responses to the same instruction, showing why the longer and more fluent answer is the weaker one.">
+<link rel="stylesheet" href="project.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap"><a href="../index.html">&lt; Mohammed Salik</a></div>
+</div>
+
+<header>
+  <div class="wrap">
+    <p class="kicker">Project 01 / Model response evaluation</p>
+    <h1>When the better-written answer is the wrong one</h1>
+    <p class="lede">Two models were given the same instruction. One produced a longer, more
+    confident, more professional-sounding answer. It is the weaker of the two, and the reason
+    is the kind of thing a rushed review misses.</p>
+    <p class="meta">Self-directed exercise. Prompt and rubric written for this case study.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>The task</h2>
+    <div class="bar"></div>
+
+    <p>I wrote an instruction with three constraints that can each be checked objectively, so
+    the evaluation does not come down to taste: a word limit, a fixed number of examples, and a
+    named audience.</p>
+
+    <div class="box plain">
+      <div class="box-label">Prompt as given to both models</div>
+      <p class="prompt-text">Explain the difference between "who" and "whom" to a 14-year-old
+student. Use under 120 words. Include exactly two examples.</p>
+    </div>
+
+    <p>The audience matters. A 14-year-old needs a rule they can apply in an exam next week, not
+    a survey of usage. That turns "helpfulness" from a vague impression into a question with an
+    answer: can the student use this tomorrow?</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The two responses</h2>
+    <div class="bar"></div>
+
+    <div class="pair">
+      <div class="box plain">
+        <div class="resp-head a">Response A</div>
+        <div class="resp-body">
+          <p>The distinction between "who" and "whom" is one of the trickier points in English
+          grammar, but there is a simple trick that makes it manageable. "Who" is a subject
+          pronoun, meaning it performs the action of the verb. "Whom" is an object pronoun,
+          meaning it receives the action.</p>
+          <p>A reliable test is to replace the word with "he" or "him". If "he" fits, use "who".
+          If "him" fits, use "whom". This test works in the large majority of cases and is the
+          one most commonly taught.</p>
+          <p>For example: "Who wrote this letter?" We would say "he wrote it", so "who" is
+          correct. Another example: "Whom do you think will win the match?" Here "whom" is
+          correct because it is the object of the verb "think".</p>
+          <p>It is also worth remembering that "whom" appears far more often in written English
+          than in speech, which is why it can feel unfamiliar even to otherwise confident
+          readers.</p>
+          <p>In modern conversational English many speakers use "who" in both positions, and
+          this is widely accepted informally. In formal writing and examinations the distinction
+          is still expected, so it is worth learning properly.</p>
+        </div>
+        <div class="wordcount">187 words / 2 examples</div>
+      </div>
+
+      <div class="box plain">
+        <div class="resp-head b">Response B</div>
+        <div class="resp-body">
+          <p>"Who" does the action. "Whom" receives it.</p>
+          <p>Quick test: swap in "he" or "him". If "he" sounds right, use who. If "him" sounds
+          right, use whom.</p>
+          <p>Example 1: "Who called you?" He called you. So: who.</p>
+          <p>Example 2: "You gave the book to whom?" You gave it to him. So: whom.</p>
+          <p>One warning. Do not reach for "whom" just because a sentence sounds formal. In "Who
+          do you think will win?", who is correct, because who is the one doing the winning.</p>
+        </div>
+        <div class="wordcount">82 words / 2 examples</div>
+      </div>
+    </div>
+
+    <p>Read quickly, A looks like the stronger answer. It is fuller, the sentences are better
+    built, and it closes with a note on register that sounds like subject knowledge. B reads like
+    notes.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Scoring</h2>
+    <div class="bar"></div>
+
+    <p>Each dimension is scored 1 to 5. Instruction-following and accuracy are checked against
+    the prompt and against the grammar itself, not against which answer reads better.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>A</th>
+          <th>B</th>
+          <th>Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Word limit</td>
+          <td class="score lo">1</td>
+          <td class="score hi">5</td>
+          <td>A runs to 187 words against a limit of 120, a 56 percent overrun. B lands at 82.</td>
+        </tr>
+        <tr>
+          <td>Example count</td>
+          <td class="score hi">5</td>
+          <td class="score hi">5</td>
+          <td>Both give exactly two. Met in full by both.</td>
+        </tr>
+        <tr>
+          <td>Factual accuracy</td>
+          <td class="score lo">2</td>
+          <td class="score hi">5</td>
+          <td>A's second example is wrong. See below. B is correct throughout.</td>
+        </tr>
+        <tr>
+          <td>Fit for the audience</td>
+          <td class="score">3</td>
+          <td class="score hi">5</td>
+          <td>A explains terms a 14-year-old may not hold. B gives a rule and a test that can be
+          applied immediately.</td>
+        </tr>
+        <tr>
+          <td>Tone</td>
+          <td class="score hi">4</td>
+          <td class="score">4</td>
+          <td>A is polished but adult-pitched. B is direct, slightly clipped. Neither is a
+          problem.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The error in Response A</h2>
+    <div class="bar"></div>
+
+    <p>A's second example is this:</p>
+
+    <div class="box">
+      <p class="prompt-text">"Whom do you think will win the match?" Here "whom" is correct
+because it is the object of the verb "think".</p>
+    </div>
+
+    <p>It is wrong. The pronoun is the subject of "will win", not the object of "think". The
+    phrase "do you think" sits inside the sentence as an aside, and removing it leaves "Who will
+    win the match?" The correct form is <strong>who</strong>.</p>
+
+    <p>This is the standard hypercorrection: reaching for "whom" because the sentence feels
+    formal. It is worth noting what makes it dangerous in an evaluation:</p>
+
+    <ul class="plain">
+      <li>It is delivered with a confident explanation attached, which reads as authority rather
+      than as a claim to check.</li>
+      <li>It appears in an answer that is correct everywhere else, so a reviewer who has already
+      judged the response sound is unlikely to go back.</li>
+      <li>The error teaches the exact mistake the lesson exists to prevent. A student who learns
+      from A will write "whom" in precisely the sentences where it is wrong.</li>
+    </ul>
+
+    <p>Response B names this trap directly in its closing line. The model that wrote less was the
+    one that understood where the student would go wrong.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Verdict</h2>
+    <div class="bar"></div>
+
+    <div class="todo">
+      <strong>For Salik:</strong> this verdict follows from the evidence above and you should be
+      able to defend every line of it in an interview. Read it, change anything you disagree
+      with, and rewrite it in your own words. Then delete this box.
+    </div>
+
+    <div class="verdict">
+      <div class="box-label">Preferred response: B</div>
+      <p>B is the stronger response and the margin is not close. It meets every constraint in the
+      prompt, it is correct, and it is pitched at the student who was named in the instruction.
+      A fails the word limit outright and carries a factual error in one of its two examples,
+      which is half the worked content it was asked to produce.</p>
+      <p>The reason this case is worth keeping is that A is the response most likely to be passed
+      on a quick read. It is fluent, it is structured, and the error is buried inside a correct
+      explanation and dressed in grammatical vocabulary. Fluency is not accuracy, and on this
+      task the answer that looked more professional was the one that would have taught a child
+      the wrong rule.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>What this exercise is testing in a reviewer</h2>
+    <div class="bar"></div>
+
+    <ul class="plain">
+      <li>Whether constraints are checked against the prompt rather than estimated by eye. The
+      word limit here is pass or fail and takes seconds to verify.</li>
+      <li>Whether claims inside a strong response still get checked. The error in A sits in the
+      third paragraph of an otherwise sound answer.</li>
+      <li>Whether length and polish are being read as quality. A is longer and better written,
+      and it is the weaker answer.</li>
+      <li>Whether the named audience is carried through the scoring, rather than the reviewer
+      judging the answer as if it were written for them.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../index.html">Back to Mohammed Salik</a>
+  </div>
+</footer>
+
+</body>
+</html>

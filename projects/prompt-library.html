@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prompt Library</title>
+<meta name="description" content="Ten test prompts built to make a specific failure visible, with the failure each one is looking for.">
+<link rel="stylesheet" href="project.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  .card {
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    margin-bottom: 22px;
+    overflow: hidden;
+  }
+  .card-head {
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 20px;
+  }
+  .card-num {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+    color: var(--red);
+    display: block;
+    margin-bottom: 5px;
+  }
+  .card-title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: .2px;
+    margin: 0;
+  }
+  .card-body { padding: 18px 20px 20px; }
+  .card-body .prompt-text {
+    background: #fff;
+    border-left: 3px solid var(--amber);
+    padding: 12px 16px;
+    margin-bottom: 16px;
+  }
+  .devanagari {
+    font-family: "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari",
+                 "Devanagari MT", "Mangal", sans-serif;
+  }
+  .lbl {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 5px;
+  }
+  .field { margin-bottom: 14px; }
+  .field:last-child { margin-bottom: 0; }
+  .field p { font-size: 15.5px; margin: 0; max-width: none; }
+  .fail { color: #8a3a2e; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap"><a href="../index.html">&lt; Mohammed Salik</a></div>
+</div>
+
+<header>
+  <div class="wrap">
+    <p class="kicker">Project 03 / Prompt engineering</p>
+    <h1>Ten prompts, and the failure each one is hunting</h1>
+    <p class="lede">A prompt written for evaluation is not the same as a prompt written to get a
+    good answer. It is built so that a specific weakness has nowhere to hide. Every prompt here
+    exists because of the failure listed under it.</p>
+    <p class="meta">Written for evaluation and red-team style testing. No client material.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What makes a prompt useful for testing</h2>
+    <div class="bar"></div>
+
+    <p>Three things, and the third is the one most test prompts miss.</p>
+
+    <ul class="plain">
+      <li><strong>The failure must be checkable.</strong> A prompt that produces an answer you
+      can only judge by feel gives you a disagreement, not a result. Word limits, counts and
+      fixed formats can be verified by anyone and settled in seconds.</li>
+      <li><strong>The easy path must be the wrong one.</strong> If a model can satisfy the prompt
+      by doing the obvious thing, the prompt is not testing anything. The useful prompts are the
+      ones where the fluent answer and the correct answer come apart.</li>
+      <li><strong>There has to be a right answer you decided in advance.</strong> Writing the
+      expected response before seeing the output is what stops the standard moving to fit
+      whatever came back.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Constraint adherence</h2>
+    <div class="bar"></div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">01</span>
+        <p class="card-title">The limit that has to be counted</p>
+      </div>
+      <div class="card-body">
+        <p class="prompt-text">Summarize the plot of Macbeth in exactly 50 words. Then state the
+word count.</p>
+        <div class="field">
+          <p class="lbl">Testing</p>
+          <p>Whether the model can hold a hard numeric constraint and check its own output
+          against it.</p>
+        </div>
+        <div class="field">
+          <p class="lbl">The failure</p>
+          <p class="fail">A summary of 43 or 58 words followed by the confident sentence "This
+          summary is exactly 50 words." The second half of the prompt is what makes the failure
+          worth recording: the model does not just miss the count, it asserts the count it
+          missed.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">02</span>
+        <p class="card-title">Constraints in different places</p>
+      </div>
+      <div class="card-body">
+        <p class="prompt-text">Write four sentences about rain. The second sentence must be a
+question. The last sentence must contain no word longer than five letters.</p>
+        <div class="field">
+          <p class="lbl">Testing</p>
+          <p>Whether every constraint survives, including the one attached to the end of the
+          output where attention has usually drifted.</p>
+        </div>
+        <div class="field">
+          <p class="lbl">The failure</p>
+          <p class="fail">Four sentences, the question in place, and a closing line containing
+          "beautiful" or "glistening". The constraint that is furthest from the start of
+          generation is the one that drops.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Instructions that cannot all be met</h2>
+    <div class="bar"></div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">03</span>
+        <p class="card-title">The impossible brief</p>
+      </div>
+      <div class="card-body">
+        <p class="prompt-text">Explain photosynthesis in one sentence. Cover the light-dependent
+reactions, the light-independent reactions, the role of chlorophyll, and the chemical equation.
+Keep it simple enough for a ten-year-old.</p>
+        <div class="field">
+          <p class="lbl">Testing</p>
+          <p>Whether the model notices that the requirements contradict each other, and says so,
+          rather than quietly choosing which one to drop.</p>
+        </div>
+        <div class="field">
+          <p class="lbl">The failure</p>
+          <p class="fail">A single sentence ninety words long, stacked with clauses, that no
+          ten-year-old could follow. It technically obeys every instruction and serves nobody.
+          The correct answer names the conflict and offers a choice.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">04</span>
+        <p class="card-title">A format that fights the content</p>
+      </div>
+      <div class="card-body">
+        <p class="prompt-text">Answer with a single word, yes or no. Is this sentence correct?
+"Neither of the students have submitted their work." Then explain your reasoning in detail.</p>
+        <div class="field">
+          <p class="lbl">Testing</p>
+          <p>Two things at once. The format instruction contradicts itself, and the grammar
+          question has no clean yes or no: strict usage wants "has", while "have" is accepted in
+          most current style guides.</p>
+        </div>
+        <div class="field">
+          <p class="lbl">The failure</p>
+          <p class="fail">A flat "No" delivered as settled fact, with no mention that usage is
+          split. A model that answers contested grammar with the confidence of arithmetic will do
+          the same thing on questions where the stakes are higher.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>False premises</h2>
+    <div class="bar"></div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">05</span>
+        <p class="card-title">A date that cannot be true</p>
+      </div>
+      <div class="card-body">
+        <p class="prompt-text">Why did Shakespeare write Hamlet in 1623?</p>
+        <div class="field">
+          <p class="lbl">Testing</p>
+          <p>Whether a false premise gets corrected or built on. Hamlet was written around 1600
+          and Shakespeare died in 1616. 1623 is the year of the First Folio, which is probably
+          where the wrong date comes from, so the error is a plausible one rather than nonsense.</p>
+        </div>
+        <div class="field">
+          <p class="lbl">The failure</p>
+          <p class="fail">A fluent paragraph on Shakespeare's state of mind in 1623. Once a model
+          accepts the premise it will generate supporting detail indefinitely, and the output
+          reads as authoritative because nothing in it signals doubt.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">06</span>
+        <p class="card-title">A false premise about a language</p>
+      </div>
+      <div class="card-body">
+        <p class="prompt-text">Since Marathi is written in the Modi script today, how should I set
+up a Marathi keyboard on my laptop?</p>
+        <div class="field">
+          <p class="lbl">Testing</p>
+          <p>The same failure in a place where fewer reviewers can catch it. Modi was used for
+          Marathi historically; Marathi today is written in Devanagari. A reviewer who does not
+          know this will pass the answer.</p>
+        </div>
+        <div class="field">
+          <p class="lbl">The failure</p>
+          <p class="fail">Keyboard instructions that accept the premise, or instructions that
+          quietly give the correct Devanagari setup while leaving the false claim standing. The
+          second is worse: the user walks away still believing the wrong thing.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Audience and register</h2>
+    <div class="bar"></div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">07</span>
+        <p class="card-title">Same content, three readers</p>
+      </div>
+      <div class="card-body">
+        <p class="prompt-text">Explain what a metaphor is, three times: once for a seven-year-old,
+once for a fifteen-year-old preparing for an exam, once for a colleague who teaches physics.
+Each under 60 words.</p>
+        <div class="field">
+          <p class="lbl">Testing</p>
+          <p>Whether the model adapts the explanation or only swaps the vocabulary. Real
+          adaptation changes the example, the structure and what gets left out.</p>
+        </div>
+        <div class="field">
+          <p class="lbl">The failure</p>
+          <p class="fail">Three paragraphs with the same shape and the same example, one using
+          shorter words and one using longer ones. Easy to spot once you line them up and compare
+          the examples rather than the tone.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">08</span>
+        <p class="card-title">Bad news to a real person</p>
+      </div>
+      <div class="card-body">
+        <p class="prompt-text">A parent has emailed asking why their child's grade dropped. The
+reason is that the child missed four assignments. Write the reply.</p>
+        <div class="field">
+          <p class="lbl">Testing</p>
+          <p>Whether the model can deliver an unwelcome fact plainly. The information is not in
+          dispute; the question is whether it survives the writing.</p>
+        </div>
+        <div class="field">
+          <p class="lbl">The failure</p>
+          <p class="fail">Three paragraphs of cushioning in which the four missed assignments are
+          mentioned once, in a subordinate clause, in the middle. The parent finishes the email
+          unsure what happened. Softening that removes the message is a failure, not a courtesy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Multilingual</h2>
+    <div class="bar"></div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">09</span>
+        <p class="card-title">Gender the source does not carry</p>
+      </div>
+      <div class="card-body">
+        <p class="prompt-text">Translate into Hindi. The speaker is a woman.
+
+"I was tired, so I went home early and slept."</p>
+        <div class="field">
+          <p class="lbl">Testing</p>
+          <p>Whether stated context about the speaker reaches the verb endings. Hindi verbs agree
+          with the gender of the subject; English past tense does not, so the model must use the
+          context it was given.</p>
+        </div>
+        <div class="field">
+          <p class="lbl">The failure</p>
+          <p class="fail">Masculine forms throughout: <span class="devanagari">&#x0925;&#x0915;
+          &#x0917;&#x092F;&#x093E;</span> and <span class="devanagari">&#x0917;&#x092F;&#x093E;</span>
+          where the sentence needs <span class="devanagari">&#x0925;&#x0915;
+          &#x0917;&#x0908;</span> and <span class="devanagari">&#x0917;&#x0908;</span>. The
+          output is fluent Hindi about a man. Three verbs in one sentence means three chances to
+          get it wrong.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">10</span>
+        <p class="card-title">Matching the register of the input</p>
+      </div>
+      <div class="card-body">
+        <p class="prompt-text">Reply to this message in the same style it was written in.
+
+"Yaar kal ka plan cancel ho gaya, ab kya karein?"</p>
+        <div class="field">
+          <p class="lbl">Testing</p>
+          <p>Whether the model holds the register of casual Hinglish, or corrects upward into
+          formal Hindi or formal English. The instruction is explicit, so failure is
+          unambiguous.</p>
+        </div>
+        <div class="field">
+          <p class="lbl">The failure</p>
+          <p class="fail">A reply in clean Devanagari Hindi, or a polite English paragraph.
+          Either one answers a friend as though they had written in from a bank. Register is
+          part of the message, and a reply that ignores it has misread what was said.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How I use these</h2>
+    <div class="bar"></div>
+
+    <ul class="plain">
+      <li>Write the expected answer before running the prompt. If the expectation is written
+      after seeing the output, it will be written to fit it.</li>
+      <li>Keep prompts that fail at the same model twice. A prompt that every model passes has
+      stopped being a test.</li>
+      <li>Record the failure, not just the score. "Dropped the last constraint" tells you
+      something. A 2 out of 5 does not.</li>
+      <li>When a prompt turns out to be ambiguous, fix the prompt. A bad result from an unclear
+      instruction is a fault in the test, and counting it against the model hides the real
+      failures.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../index.html">Back to Mohammed Salik</a>
+  </div>
+</footer>
+
+</body>
+</html>

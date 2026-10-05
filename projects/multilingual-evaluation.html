@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multilingual Evaluation Report</title>
+<meta name="description" content="Three failures in Hindi, Urdu and Marathi model output that an English-only reviewer cannot see, and what each one costs.">
+<link rel="stylesheet" href="project.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500&family=Noto+Nastaliq+Urdu:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  .native {
+    font-family: "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari",
+                 "Devanagari MT", "Mangal", sans-serif;
+    font-size: 21px;
+    line-height: 1.75;
+    margin: 0 0 6px;
+  }
+  .native.rtl {
+    direction: rtl;
+    text-align: right;
+    font-family: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", "Nirmala UI",
+                 "Geeza Pro", serif;
+    font-size: 20px;
+    line-height: 2.6;
+  }
+  .translit {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13.5px;
+    color: var(--muted);
+    letter-spacing: .2px;
+    margin: 0 0 4px;
+  }
+  .gloss {
+    font-size: 14.5px;
+    font-style: italic;
+    color: #444;
+    margin: 0;
+  }
+  .ex { margin-bottom: 18px; }
+  .ex:last-child { margin-bottom: 0; }
+  .tagline {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11.5px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 7px;
+  }
+  .tag-bad { color: var(--bad); }
+  .tag-good { color: var(--good); }
+  .costs {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13.5px;
+    background: #fff;
+    border-left: 4px solid var(--amber);
+    padding: 13px 18px;
+    margin-top: 16px;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap"><a href="../index.html">&lt; Mohammed Salik</a></div>
+</div>
+
+<header>
+  <div class="wrap">
+    <p class="kicker">Project 02 / Multilingual quality review</p>
+    <h1>Three errors an English-only reviewer cannot see</h1>
+    <p class="lede">Machine output into Hindi, Urdu and Marathi can be fluent, grammatical and
+    still wrong in ways that never surface in the English source. These are the three failures I
+    look for first, each one invisible to a reviewer working from the English alone.</p>
+    <p class="meta">Working languages: English, Hindi, Urdu, Marathi. Examples constructed for
+    this report.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Why the English source hides these</h2>
+    <div class="bar"></div>
+
+    <p>English carries less grammatical information than the three target languages do. It has
+    one word for "you" where Hindi, Urdu and Marathi have three levels of respect. Its past tense
+    does not mark the gender of the speaker. Its "we" does not say whether the listener is
+    included.</p>
+
+    <p>So the model has to supply information the source never gave it. When it guesses wrong the
+    output stays fluent, which is the problem: there is nothing to flag unless someone reads the
+    target language and knows who is speaking to whom.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Error 1. Speaker gender defaults to masculine</h2>
+    <div class="bar"></div>
+
+    <h3>Hindi</h3>
+
+    <div class="box plain">
+      <div class="box-label">English source</div>
+      <p class="prompt-text">I went to the market.</p>
+      <div class="costs" style="border-left-color: var(--muted); margin-top: 14px;">
+        Context given to the translator: the speaker is a woman.
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="ex">
+        <p class="tagline tag-bad">Model output</p>
+        <p class="native">&#x092E;&#x0948;&#x0902; &#x092C;&#x093E;&#x095B;&#x093E;&#x0930; &#x0917;&#x092F;&#x093E;&#x0964;</p>
+        <p class="translit">main bazaar gaya.</p>
+        <p class="gloss">Grammatical. The verb is masculine, so the sentence says a man went.</p>
+      </div>
+      <div class="ex">
+        <p class="tagline tag-good">Correct</p>
+        <p class="native">&#x092E;&#x0948;&#x0902; &#x092C;&#x093E;&#x095B;&#x093E;&#x0930; &#x0917;&#x0908;&#x0964;</p>
+        <p class="translit">main bazaar gayi.</p>
+        <p class="gloss">One letter changes. The verb now agrees with a female speaker.</p>
+      </div>
+    </div>
+
+    <p>Hindi, Urdu and Marathi verbs agree with the gender of the subject. English past tense does
+    not, so the model has nothing to work from and falls back on masculine. The output is
+    correct Hindi. It is simply about someone else.</p>
+
+    <div class="costs">
+      <strong>Where it costs:</strong> any first-person content where the speaker is known to be
+      female. Product reviews, chat assistants, voice agents, subtitled dialogue, personal
+      testimonials. Every sentence a woman says in the past tense is a place this can go wrong.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Error 2. Respect level drops to the familiar form</h2>
+    <div class="bar"></div>
+
+    <h3>Hindi and Urdu</h3>
+
+    <div class="box plain">
+      <div class="box-label">English source</div>
+      <p class="prompt-text">Please confirm your booking.</p>
+      <div class="costs" style="border-left-color: var(--muted); margin-top: 14px;">
+        Context: a message from a company to a customer.
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="ex">
+        <p class="tagline tag-bad">Model output, Hindi</p>
+        <p class="native">&#x0905;&#x092A;&#x0928;&#x0940; &#x092C;&#x0941;&#x0915;&#x093F;&#x0902;&#x0917; &#x0915;&#x0928;&#x094D;&#x092B;&#x0930;&#x094D;&#x092E; &#x0915;&#x0930;&#x094B;&#x0964;</p>
+        <p class="translit">apni booking confirm karo.</p>
+        <p class="gloss">The "tum" level. This is how you speak to a child or a close friend. To
+        a customer it reads as an order from someone who does not respect them.</p>
+      </div>
+      <div class="ex">
+        <p class="tagline tag-good">Correct, Hindi</p>
+        <p class="native">&#x0915;&#x0943;&#x092A;&#x092F;&#x093E; &#x0905;&#x092A;&#x0928;&#x0940; &#x092C;&#x0941;&#x0915;&#x093F;&#x0902;&#x0917; &#x0915;&#x0940; &#x092A;&#x0941;&#x0937;&#x094D;&#x091F;&#x093F; &#x0915;&#x0930;&#x0947;&#x0902;&#x0964;</p>
+        <p class="translit">krpaya apni booking ki pushti karein.</p>
+        <p class="gloss">The "aap" level, with the polite imperative. Correct for a company
+        addressing a customer.</p>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="ex">
+        <p class="tagline tag-bad">Model output, Urdu</p>
+        <p class="native rtl">&#x0627;&#x067E;&#x0646;&#x06CC; &#x0628;&#x06A9;&#x0646;&#x06AF; &#x06A9;&#x0646;&#x0641;&#x0631;&#x0645; &#x06A9;&#x0631;&#x0648;&#x06D4;</p>
+        <p class="translit">apni booking confirm karo.</p>
+        <p class="gloss">Same failure, same register.</p>
+      </div>
+      <div class="ex">
+        <p class="tagline tag-good">Correct, Urdu</p>
+        <p class="native rtl">&#x0628;&#x0631;&#x0627;&#x06C1; &#x06A9;&#x0631;&#x0645; &#x0627;&#x067E;&#x0646;&#x06CC; &#x0628;&#x06A9;&#x0646;&#x06AF; &#x06A9;&#x06CC; &#x062A;&#x0635;&#x062F;&#x06CC;&#x0642; &#x06A9;&#x0631;&#x06CC;&#x06BA;&#x06D4;</p>
+        <p class="translit">baraah-e-karam apni booking ki tasdeeq karein.</p>
+        <p class="gloss">Formal imperative, correct for customer-facing text.</p>
+      </div>
+    </div>
+
+    <p>English "please" does not carry a respect level, so it cannot tell the model which of the
+    three forms to use. Back-translated into English both versions return "please confirm your
+    booking", which means a reviewer checking by back-translation will pass the rude one.</p>
+
+    <div class="costs">
+      <strong>Where it costs:</strong> customer support, banking and insurance notifications,
+      government and health messaging, anything addressed to an elder. This error does not read
+      as a translation mistake to the person receiving it. It reads as the company being rude.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Error 3. The ambiguous "we"</h2>
+    <div class="bar"></div>
+
+    <h3>Marathi</h3>
+
+    <div class="box plain">
+      <div class="box-label">English source</div>
+      <p class="prompt-text">We should leave now.</p>
+    </div>
+
+    <div class="box">
+      <div class="ex">
+        <p class="tagline tag-good">Reading 1, listener included</p>
+        <p class="native">&#x0906;&#x092A;&#x0923; &#x0906;&#x0924;&#x093E; &#x0928;&#x093F;&#x0918;&#x093E;&#x092F;&#x0932;&#x093E; &#x0939;&#x0935;&#x0902;&#x0964;</p>
+        <p class="translit">aapan aata nighaayla havam.</p>
+        <p class="gloss">You and I should go.</p>
+      </div>
+      <div class="ex">
+        <p class="tagline tag-good">Reading 2, listener excluded</p>
+        <p class="native">&#x0906;&#x092E;&#x094D;&#x0939;&#x0940; &#x0906;&#x0924;&#x093E; &#x0928;&#x093F;&#x0918;&#x093E;&#x092F;&#x0932;&#x093E; &#x0939;&#x0935;&#x0902;&#x0964;</p>
+        <p class="translit">aamhi aata nighaayla havam.</p>
+        <p class="gloss">We are going. You are not part of this.</p>
+      </div>
+    </div>
+
+    <p>Marathi splits "we" into inclusive and exclusive. English does not, so the model picks one
+    and there is a fifty percent chance it is the wrong one. Both outputs are fluent Marathi, and
+    both back-translate to the same English sentence.</p>
+
+    <p>Unlike the first two errors this one has no safe default. The only fix is context, which
+    means flagging it as an ambiguity in the source rather than as a translation error. That
+    distinction matters in annotation work: this is a case where the right output is to ask, not
+    to pick.</p>
+
+    <div class="costs">
+      <strong>Where it costs:</strong> dialogue, subtitles, instructions, meeting notes, any
+      content where it matters who is being included. Choosing wrong does not sound wrong. It
+      quietly changes who the sentence is about.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How I check for these</h2>
+    <div class="bar"></div>
+
+    <ul class="plain">
+      <li>Read the target language first, before the source. Reading the English first sets an
+      expectation and the eye then confirms it rather than checking it.</li>
+      <li>Do not rely on back-translation. All three errors here survive a round trip into
+      English intact, which is exactly why they reach production.</li>
+      <li>For every first-person past-tense sentence, ask who is speaking. If the brief does not
+      say, that is a question for the client, not a guess.</li>
+      <li>For every sentence addressed to a reader, ask who is speaking to whom. Register is set
+      by the relationship, not by the words in the source.</li>
+      <li>Separate what is a model error from what is missing context. The Marathi case is the
+      second kind, and reporting it as the first wastes everyone's time.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../index.html">Back to Mohammed Salik</a>
+  </div>
+</footer>
+
+</body>
+</html>
