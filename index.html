@@ -211,6 +211,65 @@
     padding: 6px 11px;
   }
 
+  /* ---------- Project cards ---------- */
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 26px;
+  }
+
+  .pcard {
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 20px 20px 18px;
+    text-decoration: none;
+    color: var(--ink);
+    background: #fff;
+  }
+
+  .pcard:hover { border-color: var(--red); }
+
+  .pnum {
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+    color: var(--red);
+    margin-bottom: 9px;
+  }
+
+  .ptitle {
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15.5px;
+    font-weight: bold;
+    line-height: 1.32;
+    letter-spacing: .1px;
+    margin-bottom: 10px;
+  }
+
+  .pdesc {
+    display: block;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: #444;
+    margin-bottom: 14px;
+  }
+
+  .pmore {
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: .5px;
+    color: var(--red);
+  }
+
+  .pcard:hover .pmore { text-decoration: underline; }
+
   /* ---------- Two column ---------- */
   .two {
     display: grid;
@@ -233,6 +292,7 @@
     h1 { font-size: 28px; }
     .lede { font-size: 17px; margin-top: 22px; }
     .two { grid-template-columns: 1fr; gap: 26px; }
+    .projects { grid-template-columns: 1fr; gap: 14px; }
     header { padding: 52px 0 46px; background-position: 62% 40%; }
     header::before {
       background: linear-gradient(180deg,
@@ -271,6 +331,43 @@
     </div>
   </div>
 </header>
+
+<section>
+  <div class="wrap">
+    <h2>Selected work</h2>
+    <div class="bar"></div>
+
+    <p>Three pieces showing how I evaluate rather than what I have evaluated. Client work stays
+    confidential, so these are built from scratch on the same problems.</p>
+
+    <div class="projects">
+      <a class="pcard" href="projects/response-comparison.html">
+        <span class="pnum">01</span>
+        <span class="ptitle">When the better-written answer is the wrong one</span>
+        <span class="pdesc">Two responses to one instruction, scored against a rubric. The longer
+        and more confident answer breaks the word limit and teaches a grammar rule that is
+        wrong.</span>
+        <span class="pmore">Read the case study</span>
+      </a>
+
+      <a class="pcard" href="projects/multilingual-evaluation.html">
+        <span class="pnum">02</span>
+        <span class="ptitle">Three errors an English-only reviewer cannot see</span>
+        <span class="pdesc">Speaker gender, respect level and the ambiguous "we" in Hindi, Urdu
+        and Marathi output. All three survive back-translation into English intact.</span>
+        <span class="pmore">Read the report</span>
+      </a>
+
+      <a class="pcard" href="projects/prompt-library.html">
+        <span class="pnum">03</span>
+        <span class="ptitle">Ten prompts, and the failure each one is hunting</span>
+        <span class="pdesc">Test prompts built so a specific weakness has nowhere to hide:
+        constraint drift, impossible briefs, false premises, register collapse.</span>
+        <span class="pmore">Read the library</span>
+      </a>
+    </div>
+  </div>
+</section>
 
 <section>
   <div class="wrap">
